@@ -1,100 +1,176 @@
 # Prediction of Parkinson’s Disease Using Voice Analysis
 
-![parkinson2](https://user-images.githubusercontent.com/63733989/170835549-b2456085-24b4-4f2a-848d-9fb24cde2301.jpg)
 
-# Parkinson’s Disease:
-Parkinson’s Disease (PD) is a degenerative neurological disorder marked by decreased dopamine levels in the brain. It manifests itself through a deterioration of movement, including the presence of tremors and stiffness. There is commonly a marked effect on speech, including dysarthria (difficulty articulating sounds), hypophonia (lowered volume), and monotone (reduced pitch range). Additionally, cognitive impairments and changes in mood can occur, and risk of dementia is increased.
+ # Parkinson Detection Using Voice Analysis
 
-Traditional diagnosis of Parkinson’s Disease involves a clinician taking a neurological history of the patient and observing motor skills in various situations. Since there is no definitive laboratory test to diagnose PD, diagnosis is often difficult, particularly in the early stages when motor effects are not yet severe. Monitoring progression of the disease over time requires repeated clinic visits by the patient. An effective screening process, particularly one that doesn’t require a clinic visit, would be beneficial. Since PD patients exhibit characteristic vocal features, voice recordings are a useful and non-invasive tool for diagnosis. 
-* Source: 'Exploiting Nonlinear Recurrence and Fractal Scaling Properties for Voice Disorder Detection'),Little MA, McSharry PE, Roberts SJ, Costello DAE, Moroz IM.
-BioMedical Engineering OnLine 2007, 6:23 (26 June 2007)
-> 
-# Project Objectives:
-This project aims at utilizing machine learning algorithms to detect the presence of the early stage of Parkinson's disease using voice recordings of healthy people and people suffering from parkinson's disease.
+## Overview
 
-# Dataset:
-The dataset was acquired from kaggle, though it originated from [here](https://archive.ics.uci.edu/ml/machine-learning-databases/parkinsons/), The dataset consists of 195 rows, and 24 columns.The rows represent 195 observations, and the columns represent 23 features and 1 target variable.
+Parkinson’s Disease (PD) is a progressive neurological disorder caused by the loss of dopamine-producing neurons in the brain. It affects movement, speech, and cognitive functions. Early diagnosis is challenging because symptoms often develop gradually and there is no definitive laboratory test for detection.
 
-# Features	:
+This project uses Machine Learning techniques to detect Parkinson’s Disease from voice recordings. Since speech impairments are common in PD patients, voice analysis provides a non-invasive and cost-effective method for early screening.
 
-|Features|Description|
-|--------|-----------|
-|MDVP:FO(HZ)|Average vocal fundamental frequency|
-|MDVP:FHI(HZ)|Maximum vocal fundamental frequency|
-|MDVP:FLO(HZ)|Minimum vocal fundamental frequency|
-|MDVP:JITTER(%), MDVP:JITTER(ABS),MDVP:RAP,MDVP:PPQ, JITTER:DDP|Several variations in fundamental frequency|
-|MDVP:SHIMMER, MDVP:SHIMMER(DB), SHIMMER:APQ3 , SHIMMER:APQ5, MDVP:APQ, SHIMMER:DDA|Several measures of variation in amplitude|
-|NHR, HNR|Two measures of ratio of noise to tonal components in the voice|
-|STATUS|Health status of the subject (one) - Parkinson's, (zero) - healthy|
-|RPDE, D2|Two nonlinear dynamical complexity measures|
-|DFA|Signal fractal scaling exponent|
-|SPREAD1, SPREAD2, PPE| Three nonlinear measures of fundamental frequency variation|
+## Project Objectives
 
+* Develop a machine learning model to detect Parkinson’s Disease using voice features.
+* Compare multiple classification algorithms and evaluate their performance.
+* Minimize false negative predictions to improve early disease detection.
+* Provide a user-friendly web application for prediction using Flask.
 
-## Model Evaluation:
+## Dataset Information
 
-**Error Types**
-In every binary classification problem, there is always a 'positive' class and a 'negative' class. The positive class should be the one you are most interested in findingis usually the group of interest. For this Parkinson's disease dataset, the positive class will be the presence of Parkinson's disease and the negative class will be the absence of parkinson's disease.
+The dataset was obtained from Kaggle and contains voice measurements from healthy individuals and Parkinson’s patients.
 
-**Type 1 error:** If our model predicts the presence of Parkinson's disease, when there is' no disease present, it will have made a type 1 error. This is also known as a false positive.
+### Dataset Details
 
-**Type 2 error:** If our model predicts that there is an absence of Parkinson's disease, when the disease is present, it will have made a type 2 error. This is is also known as a false negative.
+* Total Records: 195
+* Total Features: 24
+* Input Features: 23
+* Target Variable: Status
 
+  * 1 = Parkinson’s Disease
+  * 0 = Healthy
 
-### Evaluation Metrics:
+## Features Used
 
-Accuracy Scores
-Accuracy is the metric that is most intuitive.
+| Feature Category      | Description                               |
+| --------------------- | ----------------------------------------- |
+| MDVP:Fo(Hz)           | Average vocal fundamental frequency       |
+| MDVP:Fhi(Hz)          | Maximum vocal fundamental frequency       |
+| MDVP:Flo(Hz)          | Minimum vocal fundamental frequency       |
+| Jitter Features       | Variations in vocal frequency             |
+| Shimmer Features      | Variations in amplitude                   |
+| NHR, HNR              | Noise-to-harmonics ratio measurements     |
+| RPDE, D2              | Nonlinear dynamical complexity measures   |
+| DFA                   | Signal fractal scaling exponent           |
+| Spread1, Spread2, PPE | Nonlinear measures of frequency variation |
 
-This is defined as:
+## Technologies Used
 
-![image](https://user-images.githubusercontent.com/63733989/170835692-eea27661-fdee-40d9-956a-a6e5451421a3.png)
+* Python
+* Flask
+* Scikit-Learn
+* Pandas
+* NumPy
+* HTML
+* CSS
+* SQLite
 
+## Machine Learning Models Evaluated
 
-In other words accuracy is correct predictions the model made out of the total number of predictions.
+* Support Vector Machine (SVM)
+* K-Nearest Neighbors (KNN)
+* Logistic Regression
+* Decision Tree
+* Random Forest
 
-Pros: Accuracy is easy to understand and gives a combined picture of both kinds of errors in one number.
+## Evaluation Metrics
 
-Cons: Accuracy can be deceiving when a dataset is unbalanced. It also does not give specific information about the kinds of errors that a model is making.
+The models were evaluated using:
 
-For example,  If the dataset were imbalanced, say 99.9% positive, then a prediction that EVERYTHING is positive would have a very high accuracy. However, that would not be a very useful model for actual medical use. More often we see the opposite: a disease is very rare, occurring .01% of the time or less, and a model that predicts that NO samples ever have the disease will have a high accuracy, but will actually be useless and quite dangerous!
+### Accuracy
 
-**Recall Scores**
-In order to reduce the number of false negatives,the recall scores needs to be improved.
+Measures the proportion of correctly classified instances.
 
-Recall is defined as:
+### Precision
 
-![image](https://user-images.githubusercontent.com/63733989/170835748-f26bfb28-a1af-4506-aa2b-20b110b8ed7c.png)
+Measures how many predicted positive cases are actually positive.
 
-It simply asks the question: how many samples did the model label as positive out of all of the true positive samples?
+### Recall
 
-Pros: A higher recall means a fewer false negative predictions, also known as type 2 errors. It's ideal for instances where the classification of a positive as a negative is a costly error.
+Measures how many actual positive cases are correctly identified.
 
-Cons: Does not consider how many samples |are falsely labeled as positive, or false positives. It does not penalize type 1 errors.
+### AUC Score
 
-In the case of this dataset, The consequence of predicting a false negative is grevious, as this will prevent the individual seeking for help before the disease reaches the degenerative stage, depriving the individual of a fighting chance against the disease. Therefore it is better to have a model that predicts more false positives than false negatives.  
+Measures the model's ability to distinguish between positive and negative classes.
 
-**Precision Scores**
-When the number of false positives needs to be reduced, the precision score is being improved.
-Precision is defined as:
+## Results
 
-![image](https://user-images.githubusercontent.com/63733989/170835723-fbf6fc7b-d9e1-4671-968b-d9064287d92a.png)
+After comparing multiple machine learning algorithms:
 
-In other words: What ratio of the samples predicted in the positive class were truelly in the positive class?
+* SVM achieved the highest performance.
+* KNN also produced strong results.
+* SVM obtained the highest AUC score and overall classification performance.
 
-Pros: A high precision means fewer type 1 errors, or fewer false positives. This is a good metric to maximize if a false positive prediction is a costly error.
+Therefore, the Support Vector Machine (SVM) model was selected and saved as a pickle file for deployment.
 
-Cons: Precision does not penalize a model for false negatives. It does not count type 2 errors.
+## Project Structure
 
-In this case precision would be measuring how many of the individuals diagnosed with Parkinson's disease, actually had the disease.
+```text
+Parkinson-Detection-Using-Voice-Analysis/
+│
+├── app.py
+├── model.pkl
+├── scaler.pkl
+├── data.csv
+├── users.db
+├── requirements.txt
+│
+├── templates/
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   └── result.html
+│
+├── static/
+│
+└── README.md
+```
 
-# Models Final results :
+## Installation
 
-![res](https://user-images.githubusercontent.com/63733989/170835524-e00411d6-70b0-40cb-857e-29cef41362d1.png)
+1. Clone the repository
 
+```bash
+git clone https://github.com/your-username/Parkinson-Detection-Using-Voice-Analysis.git
+```
 
-# Conclusion:
+2. Navigate to the project directory
 
-* We can conclude that SVM && kNN Model are best for our dataset as they are giving highest AUC score.
-* The higher the AUC, the better the performance of the model at distinguishing between the positive and negative classes.
-* Hence we will make Prediction System for SVM Model and save this model into pickle file.
+```bash
+cd Parkinson-Detection-Using-Voice-Analysis
+```
+
+3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Run the application
+
+```bash
+python app.py
+```
+
+5. Open your browser and visit
+
+```text
+http://127.0.0.1:5000
+```
+
+## Features
+
+* User Registration and Login
+* Parkinson’s Disease Prediction
+* Voice Feature Analysis
+* Machine Learning-Based Classification
+* Simple and Interactive Web Interface
+
+## Future Enhancements
+
+* Real-time voice recording support
+* Deep Learning-based prediction models
+* Improved dataset size and diversity
+* Cloud deployment
+* Doctor recommendation system
+
+## Conclusion
+
+This project demonstrates how machine learning can assist in the early detection of Parkinson’s Disease through voice analysis. By leveraging speech characteristics and classification algorithms, the system provides a fast, non-invasive, and accessible screening solution. Among all evaluated models, SVM achieved the best performance and was selected for deployment.
+
+## Reference
+
+Little MA, McSharry PE, Roberts SJ, Costello DAE, Moroz IM.
+"Exploiting Nonlinear Recurrence and Fractal Scaling Properties for Voice Disorder Detection."
+BioMedical Engineering OnLine, 2007.
+
