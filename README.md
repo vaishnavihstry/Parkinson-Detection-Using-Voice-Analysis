@@ -174,3 +174,8 @@ Little MA, McSharry PE, Roberts SJ, Costello DAE, Moroz IM.
 "Exploiting Nonlinear Recurrence and Fractal Scaling Properties for Voice Disorder Detection."
 BioMedical Engineering OnLine, 2007.
 
+
+
+#RESULTS
+<img width="1228" height="702" alt="Screenshot 2026-06-11 112944" src="https://github.com/user-attachments/assets/82764ff3-8b5f-466c-9015-5875f6c55d7b" />
+
