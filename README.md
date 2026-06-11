@@ -178,4 +178,10 @@ BioMedical Engineering OnLine, 2007.
 
 #RESULTS
 <img width="1228" height="702" alt="Screenshot 2026-06-11 112944" src="https://github.com/user-attachments/assets/82764ff3-8b5f-466c-9015-5875f6c55d7b" />
+<img width="916" height="551" alt="Screenshot 2026-06-11 113013" src="https://github.com/user-attachments/assets/6393efe3-249d-40ae-8262-3112e7ed0a7b" />
+<img width="981" height="551" alt="Screenshot 2026-06-11 113023" src="https://github.com/user-attachments/assets/fa3ac439-e21a-45f2-8fea-b9e13299e489" />
+<img width="1097" height="767" alt="Screenshot 2026-06-11 113040" src="https://github.com/user-attachments/assets/01d53795-3774-4cf2-814a-029ad6db3ed2" />
+
+
+
 
